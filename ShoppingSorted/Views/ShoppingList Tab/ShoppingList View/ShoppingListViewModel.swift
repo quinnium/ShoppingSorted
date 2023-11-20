@@ -13,10 +13,13 @@ class ShoppingListViewModel: ObservableObject {
     @Published var aislesList: [String]                             = []
     @Published var shoppingGroupsDict: [String: [ShoppingGroup]]    = [:]
     @Published var isShowingPurchasedItems: Bool                    = false
+    @Published var isShowingExportView: Bool                        = false
     @Published var isAddingNewShoppingItem: Bool                    = false
     @Published var itemSelectedForEditing: ShoppingItem?
-    @Published var existingRemindersListNames: [String]?
-    @Published var selectedReminderList: String?
+
+    var titlesForExportedReminders: [String] {        
+        shoppingGroupsDict.values.flatMap { $0 }.map { "\($0.commonName), \($0.totalQuantity) \($0.commonUnit)" }
+    }
     
     private var itemsQueuedForPurchase: [ShoppingItem]              = [] {
         didSet {
@@ -37,6 +40,7 @@ class ShoppingListViewModel: ObservableObject {
         shoppingItems = databaseManager.getShoppingItems(purchased: false)
         setAisles()
         setShoppingGroupsDict()
+        print("items fetched and sorted")
     }
     
     private func setAisles() {
@@ -102,4 +106,6 @@ class ShoppingListViewModel: ObservableObject {
         itemsQueuedForPurchase.removeAll()
         fetchItems()
     }
+    
+
 }
