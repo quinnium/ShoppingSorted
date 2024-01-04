@@ -14,9 +14,9 @@ struct ShoppingGroup: Identifiable, Hashable {
     let commonName: String
     let commonUnit: String
     let totalQuantity: Double
-    let shoppingItems: [ShoppingItem]
+    let shoppingItems: [RMShoppingItem]
     
-    init?(items: [ShoppingItem]) {
+    init?(items: [RMShoppingItem]) {
         guard items.count > 0 else { return nil }
         let commonName = items.first!.name
         let commonUnit = items.first!.unit

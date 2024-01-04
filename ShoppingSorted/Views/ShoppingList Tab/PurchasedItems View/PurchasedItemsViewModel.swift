@@ -9,7 +9,7 @@ import Foundation
 
 class PurchasedItemsViewModel: ObservableObject {
     
-    @Published var purchasedItems: [ShoppingItem] = []
+    @Published var purchasedItems: [RMShoppingItem] = []
     private let databaseManager = DatabaseManager()
     
     init() {
@@ -20,7 +20,7 @@ class PurchasedItemsViewModel: ObservableObject {
         purchasedItems = databaseManager.getShoppingItems(purchased: true)
     }
     
-    func unPurchase(item: ShoppingItem) {
+    func unPurchase(item: RMShoppingItem) {
         item.unPurchaseItem()
         fetchItems()
     }

@@ -9,7 +9,7 @@ import Foundation
 
 class ExportManager {
     
-    func exportMealsToJSON(meals: [Meal]) -> URL? {
+    func exportMealsToJSON(meals: [RMMeal]) -> URL? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try? encoder.encode(meals)

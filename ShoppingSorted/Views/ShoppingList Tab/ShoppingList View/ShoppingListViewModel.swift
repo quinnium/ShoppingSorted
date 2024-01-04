@@ -9,19 +9,19 @@ import Foundation
 
 class ShoppingListViewModel: ObservableObject {
     
-    private var shoppingItems: [ShoppingItem]                       = []
+    private var shoppingItems: [RMShoppingItem]                       = []
     @Published var aislesList: [String]                             = []
     @Published var shoppingGroupsDict: [String: [ShoppingGroup]]    = [:]
     @Published var isShowingPurchasedItems: Bool                    = false
     @Published var isShowingExportView: Bool                        = false
     @Published var isAddingNewShoppingItem: Bool                    = false
-    @Published var itemSelectedForEditing: ShoppingItem?
+    @Published var itemSelectedForEditing: RMShoppingItem?
 
     var titlesForExportedReminders: [String] {        
         shoppingGroupsDict.values.flatMap { $0 }.map { "\($0.commonName), \($0.totalQuantity) \($0.commonUnit)" }
     }
     
-    private var itemsQueuedForPurchase: [ShoppingItem]              = [] {
+    private var itemsQueuedForPurchase: [RMShoppingItem]              = [] {
         didSet {
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
@@ -89,11 +89,11 @@ class ShoppingListViewModel: ObservableObject {
         }
     }
     
-    func itemsMarkedAsPurchased(items: [ShoppingItem]) {
+    func itemsMarkedAsPurchased(items: [RMShoppingItem]) {
         itemsQueuedForPurchase.append(contentsOf: items)
     }
     
-    func itemsMarkedAsUnpurchased(items: [ShoppingItem]) {
+    func itemsMarkedAsUnpurchased(items: [RMShoppingItem]) {
         for item in items {
             itemsQueuedForPurchase.removeAll { $0.id == item.id }
         }

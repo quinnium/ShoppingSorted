@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct ShoppingSortedApp: App {
+    
+    let migrationManager = MigrationManager()
+    
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .onAppear(perform: {
+                    migrationManager.convertCoreDataObjectsInMemory()
+                })
         }
     }
 }

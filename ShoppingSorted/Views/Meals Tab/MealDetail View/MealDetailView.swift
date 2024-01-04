@@ -12,7 +12,7 @@ struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var vm: MealDetailViewModel
     
-    init(meal: Meal) {
+    init(meal: RMMeal) {
         _vm = StateObject(wrappedValue: MealDetailViewModel(meal: meal))
     }
     
@@ -43,6 +43,6 @@ struct MealDetailView: View {
 
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetailView(meal: Meal(name: "testmeal", ingredients: []))
+        MealDetailView(meal: RMMeal(name: "testmeal", ingredients: []))
     }
 }

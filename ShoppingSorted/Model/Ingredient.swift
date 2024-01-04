@@ -17,7 +17,7 @@ protocol PurchasableItem {
     var dateModified: Date { get set }
 }
 
-class Ingredient: Object, ObjectKeyIdentifiable, PurchasableItem, Codable {
+class RMIngredient: Object, ObjectKeyIdentifiable, PurchasableItem, Codable {
     
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String

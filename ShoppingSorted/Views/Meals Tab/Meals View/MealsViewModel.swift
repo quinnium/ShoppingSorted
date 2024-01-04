@@ -14,14 +14,14 @@ final class MealsViewModel: ObservableObject {
     @Published var mealsList: [(name: String, id: ObjectId)]    = []
     @Published var isAddingMeal: Bool                           = false
     @Published var newMealName: String                          = ""
-    @Published var selectedMeal: Meal?                          = nil
+    @Published var selectedMeal: RMMeal?                          = nil
     @Published var selectedMeals: Set<ObjectId>                 = []
     @Published var isSelecting: Bool                            = false
     @Published var isShowingExporter: Bool                      = false
     @Published var isShowingImporter: Bool                      = false
     var urlForExportableDocument: URL?
     private let databaseManager = DatabaseManager()
-    private var meals: [Meal]   = [] {
+    private var meals: [RMMeal]   = [] {
         didSet {
             mealsList = meals.map { ($0.name, $0.id) }
         }
@@ -35,13 +35,13 @@ final class MealsViewModel: ObservableObject {
         meals = databaseManager.getAllMealsUnsorted().sorted { $0.dateCreated < $1.dateCreated }
     }
     
-    func getMeal(id: ObjectId) -> Meal? {
+    func getMeal(id: ObjectId) -> RMMeal? {
         meals.first { $0.id == id }
     }
     
     func addNewmeal() {
         guard newMealName.isNotEmpty else { return }
-        let newMeal = Meal(name: newMealName, ingredients: [])
+        let newMeal = RMMeal(name: newMealName, ingredients: [])
         databaseManager.addNewMeal(meal: newMeal) {
             self.newMealName = ""
             self.selectedMeal = newMeal
@@ -59,7 +59,7 @@ final class MealsViewModel: ObservableObject {
     }
     
     func didTapExport() {
-        var mealsToExport: [Meal] = []
+        var mealsToExport: [RMMeal] = []
         for id in selectedMeals {
             if let meal = meals.first( where: { $0.id == id }) {
                 mealsToExport.append(meal)

@@ -9,9 +9,9 @@ import Foundation
 
 class GroupDetailViewModel: ObservableObject {
     private let group: ShoppingGroup
-    @Published var shoppingItems: [ShoppingItem] = []
-    @Published var itemSelectedForEditing: ShoppingItem?
-    private var itemsQueuedForPurchase: [ShoppingItem] = [] {
+    @Published var shoppingItems: [RMShoppingItem] = []
+    @Published var itemSelectedForEditing: RMShoppingItem?
+    private var itemsQueuedForPurchase: [RMShoppingItem] = [] {
         didSet {
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
@@ -31,11 +31,11 @@ class GroupDetailViewModel: ObservableObject {
         shoppingItems = group.shoppingItems.filter { $0.purchased == false}
     }
     
-    func itemMarkedAsPurchased(item: ShoppingItem) {
+    func itemMarkedAsPurchased(item: RMShoppingItem) {
         itemsQueuedForPurchase.append(item)
     }
     
-    func itemMarkedAsUnpurchased(item: ShoppingItem) {
+    func itemMarkedAsUnpurchased(item: RMShoppingItem) {
             itemsQueuedForPurchase.removeAll { $0.id == item.id }
     }
     

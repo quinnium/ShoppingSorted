@@ -27,7 +27,7 @@ enum Constants {
             "🍷 🍺 Drinks / Beverages",
             "🧻 🧹 Household / Cleaning",
             "🧴 🩹 Toiletries / Health",
-            "🤔 ❓ Other"
+            "🛒 🛍️ Other"
         ]
         
         static let units    = [
@@ -42,6 +42,8 @@ enum Constants {
             "tbsp",
             "pint"
         ]
+        
+        
     }
     
     static let showDevTools = false

@@ -8,17 +8,17 @@
 import Foundation
 import RealmSwift
 
-class Meal: Object, ObjectKeyIdentifiable, Codable {
+class RMMeal: Object, ObjectKeyIdentifiable, Codable {
     
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String
-    @Persisted var ingredients: List<Ingredient>
+    @Persisted var ingredients: List<RMIngredient>
     @Persisted var dateCreated: Date
     
-    convenience init(name: String, ingredients: [Ingredient], dateCreated: Date = Date()) {
+    convenience init(name: String, ingredients: [RMIngredient], dateCreated: Date = Date()) {
         self.init()
         self.name           = name
-        self.ingredients    = List<Ingredient>()
+        self.ingredients    = List<RMIngredient>()
         self.ingredients.append(objectsIn: ingredients)
         self.dateCreated    = dateCreated
     }

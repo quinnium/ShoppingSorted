@@ -31,6 +31,6 @@ struct GroupDetailView: View {
 }
 
 #Preview {
-    let items: [ShoppingItem] = []
+    let items: [RMShoppingItem] = []
     return GroupDetailView(group: ShoppingGroup(items: items)!)
 }

@@ -38,19 +38,19 @@ final class DatabaseManager {
         print("Log: Main Realm database at: \(path?.description ?? "not found")")
     }
     
-    func getAllMealsUnsorted() -> [Meal] {
-        let results = realm.objects(Meal.self)
+    func getAllMealsUnsorted() -> [RMMeal] {
+        let results = realm.objects(RMMeal.self)
         return Array(results)
     }
     
-    func addNewMeal(meal: Meal, completion: @escaping () -> Void) {
+    func addNewMeal(meal: RMMeal, completion: @escaping () -> Void) {
         realm.beginWrite()
         realm.add(meal)
         commitChanges()
         completion()
     }
     
-    func addNewMeals(meals: [Meal]) {
+    func addNewMeals(meals: [RMMeal]) {
         realm.beginWrite()
         for meal in meals {
             realm.add(meal)
@@ -58,13 +58,13 @@ final class DatabaseManager {
         commitChanges()
     }
     
-    func updateMealName(meal: Meal, newName: String) {
+    func updateMealName(meal: RMMeal, newName: String) {
         realm.beginWrite()
         meal.name = newName
         commitChanges()
     }
     
-    func deleteMeal(meal: Meal) {
+    func deleteMeal(meal: RMMeal) {
         realm.beginWrite()
         for ingredient in meal.ingredients {
             realm.delete(ingredient)
@@ -74,20 +74,20 @@ final class DatabaseManager {
     }
     
     func deleteMeal(id: ObjectId) {
-        guard let meal = realm.object(ofType: Meal.self, forPrimaryKey: id) else { return }
+        guard let meal = realm.object(ofType: RMMeal.self, forPrimaryKey: id) else { return }
         realm.beginWrite()
         realm.delete(meal)
         commitChanges()
     }
     
-    func deleteIngredients(from meal: Meal, at indexSet: IndexSet) {
+    func deleteIngredients(from meal: RMMeal, at indexSet: IndexSet) {
         realm.beginWrite()
         meal.ingredients.remove(atOffsets: indexSet)
         commitChanges()
     }
     
-    func updateIngredientForMeal(ingredient: Ingredient, name: String, quantity: Double, unit: String, aisle: String) {
-        if let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredient.id) {
+    func updateIngredientForMeal(ingredient: RMIngredient, name: String, quantity: Double, unit: String, aisle: String) {
+        if let ingredient = realm.object(ofType: RMIngredient.self, forPrimaryKey: ingredient.id) {
             realm.beginWrite()
             ingredient.name = name
             ingredient.quantity = quantity
@@ -97,22 +97,22 @@ final class DatabaseManager {
         }
     }
     
-    func addIngredientToMeal(name: String, quantity: Double, unit: String, aisle: String, meal: Meal) {
-        if let meal = realm.object(ofType: Meal.self, forPrimaryKey: meal.id) {
-            let ingredient = Ingredient(name: name, quantity: quantity, unit: unit, aisle: aisle)
+    func addIngredientToMeal(name: String, quantity: Double, unit: String, aisle: String, meal: RMMeal) {
+        if let meal = realm.object(ofType: RMMeal.self, forPrimaryKey: meal.id) {
+            let ingredient = RMIngredient(name: name, quantity: quantity, unit: unit, aisle: aisle)
             realm.beginWrite()
             meal.ingredients.append(ingredient)
             commitChanges()
         }
     }
     
-    func getUnits() -> [Unit] {
-        let units = realm.objects(Unit.self).sorted { $0.order < $1.order }
+    func getUnits() -> [RMUnit] {
+        let units = realm.objects(RMUnit.self).sorted { $0.order < $1.order }
         if units.count < 1 {
             let defaultUnits = Constants.DefaultValues.units
             realm.beginWrite()
             for index in 0..<defaultUnits.count {
-                realm.add(Unit(name: defaultUnits[index], order: index))
+                realm.add(RMUnit(name: defaultUnits[index], order: index))
             }
             commitChanges()
             return getUnits()
@@ -120,13 +120,13 @@ final class DatabaseManager {
         return units
     }
     
-    func getAisles() -> [Aisle] {
-        let aisles = realm.objects(Aisle.self).sorted { $0.order < $1.order }
+    func getAisles() -> [RMAisle] {
+        let aisles = realm.objects(RMAisle.self).sorted { $0.order < $1.order }
         if aisles.count < 1 {
             let defaultAisles = Constants.DefaultValues.aisles
             realm.beginWrite()
             for index in 0..<defaultAisles.count {
-                realm.add(Aisle(name: defaultAisles[index], order: index))
+                realm.add(RMAisle(name: defaultAisles[index], order: index))
             }
             commitChanges()
             return getAisles()
@@ -134,19 +134,19 @@ final class DatabaseManager {
         return aisles
     }
     
-    func getShoppingItems(purchased: Bool) -> [ShoppingItem] {
-        realm.objects(ShoppingItem.self).filter { $0.purchased == purchased }
+    func getShoppingItems(purchased: Bool) -> [RMShoppingItem] {
+        realm.objects(RMShoppingItem.self).filter { $0.purchased == purchased }
     }
   
     func addNewShoppingItem(name: String, quantity: Double, unit: String, aisle: String, forMeal: String?) {
         realm.beginWrite()
-        let shoppingItem = ShoppingItem(name: name, quantity: quantity, unit: unit, aisle: aisle, forMeal: forMeal)
+        let shoppingItem = RMShoppingItem(name: name, quantity: quantity, unit: unit, aisle: aisle, forMeal: forMeal)
         realm.add(shoppingItem)
         commitChanges()
     }
     
-    func updateShoppingItem(item: ShoppingItem, name: String, quantity: Double, unit: String, aisle: String) {
-        if let item = realm.object(ofType: ShoppingItem.self, forPrimaryKey: item.id) {
+    func updateShoppingItem(item: RMShoppingItem, name: String, quantity: Double, unit: String, aisle: String) {
+        if let item = realm.object(ofType: RMShoppingItem.self, forPrimaryKey: item.id) {
             realm.beginWrite()
             item.name       = name
             item.quantity   = quantity
@@ -157,8 +157,8 @@ final class DatabaseManager {
     }
     
     func getAllPurchasableItemsUnsorted() -> [PurchasableItem] {
-        let ingredients = realm.objects(Ingredient.self)
-        let shoppingItems = realm.objects(ShoppingItem.self)
+        let ingredients = realm.objects(RMIngredient.self)
+        let shoppingItems = realm.objects(RMShoppingItem.self)
         var itemsToReturn: [PurchasableItem] = []
         itemsToReturn.append(contentsOf: Array(ingredients))
         itemsToReturn.append(contentsOf: Array(shoppingItems))
@@ -166,11 +166,11 @@ final class DatabaseManager {
     }
     
     func developerCreateBlankMeal(withName name: String = "", withIngredients: Bool) {
-        var ingredients: [Ingredient] = []
+        var ingredients: [RMIngredient] = []
         if withIngredients {
             let amount = Int.random(in: 1...7)
             for _ in 1...amount {
-                let newIngredient = Ingredient(name: Constants.testMealIngredients.randomElement()!,
+                let newIngredient = RMIngredient(name: Constants.testMealIngredients.randomElement()!,
                                                quantity: Double(Int.random(in: 1...5)),
                                                unit: Constants.DefaultValues.units.randomElement()!,
                                                aisle: Constants.DefaultValues.aisles.randomElement()!)
@@ -178,7 +178,7 @@ final class DatabaseManager {
             }
         }
         realm.beginWrite()
-        let newMeal = Meal(name: name, ingredients: ingredients)
+        let newMeal = RMMeal(name: name, ingredients: ingredients)
         realm.add(newMeal)
         commitChanges()
     }
@@ -189,16 +189,16 @@ final class DatabaseManager {
         commitChanges()
     }
     
-    func saveAisles(aisles newAisles: [Aisle]) {
-        let existingAisles = realm.objects(Aisle.self)
+    func saveAisles(aisles newAisles: [RMAisle]) {
+        let existingAisles = realm.objects(RMAisle.self)
         realm.beginWrite()
         realm.delete(existingAisles)
         realm.add(newAisles)
         commitChanges()
     }
 
-    func saveUnits(units newUnits: [Unit]) {
-        let existingUnits = realm.objects(Unit.self)
+    func saveUnits(units newUnits: [RMUnit]) {
+        let existingUnits = realm.objects(RMUnit.self)
         realm.beginWrite()
         realm.delete(existingUnits)
         realm.add(newUnits)

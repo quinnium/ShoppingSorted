@@ -17,12 +17,12 @@ struct PurchasableItemView: View {
     
     
     // Init for when adding/editing a ShoppingItem
-    init(shoppingItem: ShoppingItem?) {
+    init(shoppingItem: RMShoppingItem?) {
         _vm = StateObject(wrappedValue: PurchasableItemViewModel(shoppingItem: shoppingItem))
     }
     
     // Init for when adding/editing an Ingredient
-    init(ingredient: Ingredient?, parentMeal: Meal) {
+    init(ingredient: RMIngredient?, parentMeal: RMMeal) {
         _vm = StateObject(wrappedValue: PurchasableItemViewModel(ingredient: ingredient, parentMeal: parentMeal))
     }
     
@@ -100,6 +100,6 @@ struct PurchasableItemView: View {
 
 struct PurchasableItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchasableItemView(ingredient: Ingredient(name: "Test Ing", quantity: 1, unit: "noone", aisle: "🥩 🍗 Meat"), parentMeal: Meal(name: "Yest", ingredients: []))
+        PurchasableItemView(ingredient: RMIngredient(name: "Test Ing", quantity: 1, unit: "noone", aisle: "🥩 🍗 Meat"), parentMeal: RMMeal(name: "Yest", ingredients: []))
     }
 }

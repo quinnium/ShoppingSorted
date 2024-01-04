@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Aisle: Object {
+class RMAisle: Object {
     
     @Persisted var name: String
     @Persisted var order: Int

@@ -37,6 +37,6 @@ struct MealDetailFooterView: View {
 
 struct MealDetailFooterView_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetailFooterView(vm: .init(meal: Meal(name: "Test Meal", ingredients: [])))
+        MealDetailFooterView(vm: .init(meal: RMMeal(name: "Test Meal", ingredients: [])))
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GroupItemView: View {
-    let item: ShoppingItem
+    let item: RMShoppingItem
     @ObservedObject var vm: GroupDetailViewModel
     @State private var isSelected: Bool = false
     
@@ -60,6 +60,6 @@ struct GroupItemView: View {
 }
 
 #Preview {
-    let item = ShoppingItem(name: "Test", quantity: 100, unit: "ml", aisle: "aisle")
+    let item = RMShoppingItem(name: "Test", quantity: 100, unit: "ml", aisle: "aisle")
     return GroupItemView(item: item, vm: GroupDetailViewModel(group: ShoppingGroup(items: [item])!))
 }

@@ -132,8 +132,8 @@ struct ShoppingGroupView: View {
 
 #Preview {
     let items = [
-        ShoppingItem(name: "Olive Oil", quantity: 100.5, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables"),
-        ShoppingItem(name: "Olive Oil", quantity: 10.6944, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables")
+        RMShoppingItem(name: "Olive Oil", quantity: 100.5, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables"),
+        RMShoppingItem(name: "Olive Oil", quantity: 10.6944, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables")
     ]
     let group = ShoppingGroup(items: items)!
     return List {

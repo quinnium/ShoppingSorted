@@ -61,5 +61,5 @@ struct MealDetailDeleteMealOverlayView: View {
 }
 
 #Preview {
-    MealDetailDeleteMealOverlayView(vm: MealDetailViewModel(meal: Meal(name: "Test", ingredients: [])))
+    MealDetailDeleteMealOverlayView(vm: MealDetailViewModel(meal: RMMeal(name: "Test", ingredients: [])))
 }

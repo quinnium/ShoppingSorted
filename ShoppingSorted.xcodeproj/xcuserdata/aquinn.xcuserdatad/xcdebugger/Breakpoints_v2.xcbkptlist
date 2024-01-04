@@ -3,4 +3,54 @@
    uuid = "B7D7031A-2977-4892-B6EE-15B9227F2AE3"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BE63C10-F393-4B8D-A827-2DA6C9E3A74B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoppingSorted/Managers/MigrationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "fetchObjectsWithoutFullStack()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4BE63C10-F393-4B8D-A827-2DA6C9E3A74B - dd9b5457aefe33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoppingSorted.MigrationManager.convertCoreDataObjectsInMemory() -&gt; ()"
+                  moduleName = "ShoppingSorted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aquinn/Coding%20(Local)/ShoppingSorted_Dev/ShoppingSorted/Managers/MigrationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "500">
+               </Location>
+               <Location
+                  uuid = "4BE63C10-F393-4B8D-A827-2DA6C9E3A74B - bff41b8049b83ee4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoppingSorted.MigrationManager.fetchObjectsWithoutFullStack() -&gt; ()"
+                  moduleName = "ShoppingSorted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aquinn/Coding%20(Local)/ShoppingSorted_Dev/ShoppingSorted/Managers/MigrationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

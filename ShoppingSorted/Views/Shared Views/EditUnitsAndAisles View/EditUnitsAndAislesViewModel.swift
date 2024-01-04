@@ -59,15 +59,15 @@ final class EditUnitsAndAislesViewModel: ObservableObject {
             print("invalid form")
             return
         }
-        var newAisles: [Aisle] = []
+        var newAisles: [RMAisle] = []
         for (index, name) in aisles.enumerated() {
-            let aisle = Aisle(name: name, order: index)
+            let aisle = RMAisle(name: name, order: index)
             newAisles.append(aisle)
         }
         databaseManager.saveAisles(aisles: newAisles)
-        var newUnits: [Unit] = []
+        var newUnits: [RMUnit] = []
         for (index, name) in units.enumerated() {
-            let unit = Unit(name: name, order: index)
+            let unit = RMUnit(name: name, order: index)
             newUnits.append(unit)
         }
         databaseManager.saveUnits(units: newUnits)

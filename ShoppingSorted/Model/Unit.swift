@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Unit: Object {
+class RMUnit: Object {
     
     @Persisted var name: String
     @Persisted var order: Int

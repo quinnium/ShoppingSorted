@@ -78,5 +78,5 @@ struct MealDetailAddToShoppingListOverlayView: View {
 }
 
 #Preview {
-    MealDetailAddToShoppingListOverlayView(vm: .init(meal: Meal(name: "", ingredients: [])))
+    MealDetailAddToShoppingListOverlayView(vm: .init(meal: RMMeal(name: "", ingredients: [])))
 }

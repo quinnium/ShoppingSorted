@@ -19,7 +19,7 @@ class PurchasableItemViewModel: ObservableObject {
     
     private var item: PurchasableItem
     private var itemType: ItemType
-    private var parentMeal: Meal?
+    private var parentMeal: RMMeal?
     private let databaseManager: DatabaseManager    = DatabaseManager()
     private lazy var previouslyPurchasedItems: [String: (unit: String, aisle: String)] = {
         getAllPreviousItems()
@@ -39,10 +39,10 @@ class PurchasableItemViewModel: ObservableObject {
     var oldInvalidUnitName: String?
     var oldInvalidAisleName: String?
 
-    init(ingredient: Ingredient?, parentMeal: Meal) {
+    init(ingredient: RMIngredient?, parentMeal: RMMeal) {
         if ingredient == nil {
             itemType = .newIngredient
-            item = Ingredient(name: "", quantity: 0, unit: "", aisle: "")
+            item = RMIngredient(name: "", quantity: 0, unit: "", aisle: "")
         } else {
             itemType = .existingIngredient
             item = ingredient!
@@ -52,10 +52,10 @@ class PurchasableItemViewModel: ObservableObject {
         propagateValues()
     }
     
-    init(shoppingItem: ShoppingItem?) {
+    init(shoppingItem: RMShoppingItem?) {
         if shoppingItem == nil {
             itemType = .newShoppingItem
-            item = ShoppingItem(name: "", quantity: 0, unit: "", aisle: "")
+            item = RMShoppingItem(name: "", quantity: 0, unit: "", aisle: "")
         } else {
             itemType = .existingShoppingItem
             item = shoppingItem!
@@ -158,21 +158,21 @@ class PurchasableItemViewModel: ObservableObject {
                                                     aisle: itemAisle,
                                                     meal: parentMeal)
             case .existingIngredient:
-                guard let ingredient = item as? Ingredient else { return }
+                guard let ingredient = item as? RMIngredient else { return }
                 databaseManager.updateIngredientForMeal(ingredient: ingredient,
                                                         name: itemName,
                                                         quantity: itemQuantity,
                                                         unit: itemUnit,
                                                         aisle: itemAisle)
             case .newShoppingItem:
-                guard let _ = item as? ShoppingItem else { return }
+                guard let _ = item as? RMShoppingItem else { return }
                 databaseManager.addNewShoppingItem(name: itemName, 
                                                    quantity: itemQuantity,
                                                    unit: itemUnit,
                                                    aisle: itemAisle,
                                                    forMeal: nil)
             case .existingShoppingItem:
-                guard let shoppingItem = item as? ShoppingItem else { return }
+                guard let shoppingItem = item as? RMShoppingItem else { return }
                 databaseManager.updateShoppingItem(item: shoppingItem, 
                                                    name: itemName,
                                                    quantity: itemQuantity,

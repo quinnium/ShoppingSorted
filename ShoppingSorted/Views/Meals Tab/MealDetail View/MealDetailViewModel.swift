@@ -18,8 +18,8 @@ class MealDetailViewModel: ObservableObject {
         let unit: String
     }
     
-    let meal: Meal
-    private var ingredients: [Ingredient] = [] {
+    let meal: RMMeal
+    private var ingredients: [RMIngredient] = [] {
         didSet {
             ingredientsList = ingredients.map { IngredientsListItem(id: $0.id,
                                                                     name: $0.name,
@@ -30,12 +30,12 @@ class MealDetailViewModel: ObservableObject {
     @Published var mealName: String                         = ""
     @Published var ingredientsList: [IngredientsListItem]   = []
     @Published var isAddingIngredient: Bool                 = false
-    @Published var selectedIngredient: Ingredient?          = nil
+    @Published var selectedIngredient: RMIngredient?          = nil
     @Published var isShowingDeleteMealCheck: Bool           = false
     @Published var isShowingAddToListCheck: Bool            = false
     private let databaseManager                             = DatabaseManager()
 
-    init(meal: Meal) {
+    init(meal: RMMeal) {
         self.meal           = meal
         self.mealName       = meal.name
         fetchIngredients()
@@ -49,7 +49,7 @@ class MealDetailViewModel: ObservableObject {
         ingredients = Array(meal.ingredients)
     }
     
-    func getIngredient(id: ObjectId) -> Ingredient? {
+    func getIngredient(id: ObjectId) -> RMIngredient? {
         ingredients.first { $0.id == id }
     }
     

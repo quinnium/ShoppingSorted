@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class ShoppingItem: Object, ObjectKeyIdentifiable, PurchasableItem {
+class RMShoppingItem: Object, ObjectKeyIdentifiable, PurchasableItem {
     
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String
