@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-enum TextFieldFocus { case name, quantity }
+
 
 struct PurchasableItemView: View {
     
+    enum TextFieldFocus { case name, quantity }
+    
     @Environment(\.dismiss) var dismiss
-    @FocusState private var focusedTextField: TextFieldFocus?
+    @FocusState  var focusedTextField: TextFieldFocus?
     @StateObject var vm: PurchasableItemViewModel
     
     
@@ -47,7 +49,7 @@ struct PurchasableItemView: View {
                         }
                         PurchasableItemAisleView(aisles: vm.aisleList, itemAisle: $vm.itemAisle, focusedTextField: $focusedTextField)
                     }
-                    if focusedTextField == .name && vm.itemName.isNotEmpty {
+                    if focusedTextField == .name && vm.itemName.isNotEmpty && vm.searchresults.isNotEmpty {
                         List(vm.searchresults, id: \.self) { name in
                             Button(name.firstUppercased) {
                                 vm.previousItemSelected(name: name)
@@ -82,6 +84,11 @@ struct PurchasableItemView: View {
                 vm.loadUnitsAndAisles()
             } content: {
                 EditUnitsAndAislesView()
+            }
+            .onAppear {
+                if vm.immediateFocusOnNameField {
+                    focusedTextField = .name
+                }
             }
         }
         // TODO: Ensure keyboard buttons etc functions as per old app, as UX important on this screen

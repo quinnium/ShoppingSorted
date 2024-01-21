@@ -28,7 +28,7 @@ struct AppTabView: View {
                 }
                 .toolbarBackground(.visible, for: .tabBar)
             }
-            DeveloperToolsView()
+//            DeveloperToolsView()
         }
     }
 }

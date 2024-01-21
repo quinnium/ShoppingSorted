@@ -27,33 +27,59 @@ struct EditUnitsAndAislesView: View {
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
                     
                     Section("Aisles") {
-                        ForEach($vm.aisles, id: \.self) { $aisle in
-                            TextField("Aisle", text: $aisle)
+                        ForEach(0..<vm.aisles.count, id: \.self) { i in
+                            TextField("Aisle", text: $vm.aisles[i])
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
                                 .focused($aisleTextFieldInFocus)
                         }
                         .onDelete(perform: vm.deleteAisle)
                         .onMove(perform: vm.moveAisle)
-                        Button("+ New") {
+                        Button("+New") {
                             vm.addNewAisle()
                         }
-                        .id(vm.bottomOfAislesViewID)
                     }
                     Section("Units") {
-                        ForEach($vm.units, id: \.self) { $unit in
-                            TextField("Unit", text: $unit)
+                        ForEach(0..<vm.units.count, id: \.self) { i in
+                            TextField("Units", text: $vm.units[i])
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
                                 .focused($unitTextFieldInFocus)
                         }
                         .onDelete(perform: vm.deleteUnit)
                         .onMove(perform: vm.moveUhits)
-                        Button("+ New") {
+                        Button("+New") {
                             vm.addNewUnit()
                         }
-                        .id(vm.bottomOfUnitsViewID)
                     }
+//                    Section("Aisles") {
+//                        ForEach($vm.aisles, id: \.self) { $aisle in
+//                            TextField("Aisle", text: $aisle)
+//                                .lineLimit(1)
+//                                .minimumScaleFactor(0.5)
+//                                .focused($aisleTextFieldInFocus)
+//                        }
+//                        .onDelete(perform: vm.deleteAisle)
+//                        .onMove(perform: vm.moveAisle)
+//                        Button("+ New") {
+//                            vm.addNewAisle()
+//                        }
+//                        .id(vm.bottomOfAislesViewID)
+//                    }
+//                    Section("Units") {
+//                        ForEach($vm.units, id: \.self) { $unit in
+//                            TextField("Unit", text: $unit)
+//                                .lineLimit(1)
+//                                .minimumScaleFactor(0.5)
+//                                .focused($unitTextFieldInFocus)
+//                        }
+//                        .onDelete(perform: vm.deleteUnit)
+//                        .onMove(perform: vm.moveUhits)
+//                        Button("+ New") {
+//                            vm.addNewUnit()
+//                        }
+//                        .id(vm.bottomOfUnitsViewID)
+//                    }
                 }
                 .onChange(of: vm.aisles.count) { proxy.scrollTo(vm.bottomOfAislesViewID, anchor: .bottom) }
                 .onChange(of: vm.units.count) { proxy.scrollTo(vm.bottomOfUnitsViewID, anchor: .bottom) }

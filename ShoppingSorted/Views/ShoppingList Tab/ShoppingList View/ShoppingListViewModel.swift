@@ -16,6 +16,7 @@ class ShoppingListViewModel: ObservableObject {
     @Published var isShowingExportView: Bool                        = false
     @Published var isAddingNewShoppingItem: Bool                    = false
     @Published var itemSelectedForEditing: RMShoppingItem?
+    @Published var navigationPath: [ShoppingGroup] = []
 
     var titlesForExportedReminders: [String] {        
         shoppingGroupsDict.values.flatMap { $0 }.map { "\($0.commonName), \($0.totalQuantity) \($0.commonUnit)" }

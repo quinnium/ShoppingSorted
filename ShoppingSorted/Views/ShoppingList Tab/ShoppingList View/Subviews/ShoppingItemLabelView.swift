@@ -30,7 +30,7 @@ struct ShoppingItemLabelView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
                 .foregroundStyle(Color(uiColor: .systemGray))
-                .frame(width: 55, alignment: .leading)
+//                .frame(width: 55, alignment: .leading)
         }
         .foregroundStyle(Color(uiColor: .label))
     }

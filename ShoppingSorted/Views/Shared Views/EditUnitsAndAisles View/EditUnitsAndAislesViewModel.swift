@@ -9,8 +9,8 @@ import Foundation
 
 final class EditUnitsAndAislesViewModel: ObservableObject {
     
-    var aisles: [String] = []
-    var units: [String]  = []
+    @Published var aisles: [String] = []
+    @Published var units: [String]  = []
     private let databaseManager     = DatabaseManager()
     var bottomOfAislesViewID        = UUID()
     var bottomOfUnitsViewID         = UUID()

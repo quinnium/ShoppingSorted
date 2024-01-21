@@ -38,6 +38,9 @@ class PurchasableItemViewModel: ObservableObject {
     @Published var isShowingAlertInvalidUnit: Bool  = false
     var oldInvalidUnitName: String?
     var oldInvalidAisleName: String?
+    var immediateFocusOnNameField: Bool {
+        itemType == .newIngredient || itemType == .newShoppingItem
+    }
 
     init(ingredient: RMIngredient?, parentMeal: RMMeal) {
         if ingredient == nil {

@@ -15,17 +15,18 @@ struct MealsView: View {
         
         NavigationStack {
             List(selection: $vm.selectedMeals) {
-                ForEach($vm.mealsList, id: \.id) { meal in
+                ForEach(vm.filteredMealsList, id: \.id) { meal in
                     Button {
-                        if let meal = vm.getMeal(id: meal.wrappedValue.id) {
+                        if let meal = vm.getMeal(id: meal.id) {
                             vm.selectedMeal = meal
                         }
                     } label: {
-                        Text(meal.wrappedValue.name)
+                        Text(meal.name)
                             .foregroundStyle(Color(uiColor: .label))
                     }
                 }
             }
+            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search")
             .listStyle(.insetGrouped)
             .environment(\.editMode, .constant(vm.isSelecting ? EditMode.active : EditMode.inactive)).animation(.spring, value: vm.isSelecting)
             .blur(radius: (vm.isAddingMeal) ? 2 : 0)
@@ -42,6 +43,19 @@ struct MealsView: View {
                         }
                     } else {
                         Menu {
+                            Menu {
+                                Button("A > Z (Alphabetically)") {
+                                    print("a to z")
+                                    vm.sortOrder = .alphabetical
+                                }
+                                Button("by Date") {
+                                    print("by date")
+                                    vm.sortOrder = .chronological
+                                }
+                            } label: {
+                                Label("Sort Meals", systemImage: "")
+                            }
+
                             Button("Export / Delete") {
                                 vm.isSelecting = true
                             }

@@ -11,7 +11,7 @@ struct PurchasableItemAisleView: View {
 
     let aisles: [String]
     @Binding var itemAisle: String
-    var focusedTextField: FocusState<TextFieldFocus?>.Binding
+    var focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>.Binding
     
     var body: some View {
         VStack(spacing: 5) {
@@ -67,6 +67,6 @@ struct PurchasableItemAisleView: View {
 
 struct PurchasableItemAisleView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchasableItemAisleView(aisles: ["aisle one","aisle two"], itemAisle: .constant("aisle two"), focusedTextField: FocusState<TextFieldFocus?>().projectedValue)
+        PurchasableItemAisleView(aisles: ["aisle one","aisle two"], itemAisle: .constant("aisle two"), focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>().projectedValue)
     }
 }

@@ -11,14 +11,20 @@ import RealmSwift
 final class MealsViewModel: ObservableObject {
     
     // View uses a tuple for main List, so as not to directly interact with live model objects
-    @Published var mealsList: [(name: String, id: ObjectId)]    = []
-    @Published var isAddingMeal: Bool                           = false
-    @Published var newMealName: String                          = ""
-    @Published var selectedMeal: RMMeal?                          = nil
-    @Published var selectedMeals: Set<ObjectId>                 = []
-    @Published var isSelecting: Bool                            = false
-    @Published var isShowingExporter: Bool                      = false
-    @Published var isShowingImporter: Bool                      = false
+    @Published var mealsList: [(name: String, id: ObjectId)]            = []
+    @Published var isAddingMeal: Bool                                   = false
+    @Published var newMealName: String                                  = ""
+    @Published var selectedMeal: RMMeal?                                  = nil
+    @Published var selectedMeals: Set<ObjectId>                         = []
+    @Published var isSelecting: Bool                                    = false
+    @Published var isShowingExporter: Bool                              = false
+    @Published var isShowingImporter: Bool                              = false
+    @Published var searchText: String                                   = ""
+    var sortOrder: SortOrder                                            = .chronological {
+        didSet {
+            fetchMeals()
+        }
+    }
     var urlForExportableDocument: URL?
     private let databaseManager = DatabaseManager()
     private var meals: [RMMeal]   = [] {
@@ -26,13 +32,30 @@ final class MealsViewModel: ObservableObject {
             mealsList = meals.map { ($0.name, $0.id) }
         }
     }
+    var filteredMealsList: [(name: String, id: ObjectId)] {
+        if searchText.isEmpty {
+            mealsList
+        } else {
+            mealsList.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+    enum SortOrder {
+        case alphabetical, chronological
+    }
     
     init() {
         fetchMeals()
     }
     
     func fetchMeals() {
-        meals = databaseManager.getAllMealsUnsorted().sorted { $0.dateCreated < $1.dateCreated }
+        meals = databaseManager.getAllMealsUnsorted().sorted {
+            switch sortOrder {
+                case .alphabetical:
+                    $0.name < $1.name
+                case .chronological:
+                    $0.dateCreated < $1.dateCreated
+            }
+        }
     }
     
     func getMeal(id: ObjectId) -> RMMeal? {

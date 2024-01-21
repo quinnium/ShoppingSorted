@@ -57,7 +57,7 @@ struct MealDetailAddToShoppingListOverlayView: View {
                     .padding(10)
                     .frame(width: 100)
                     .foregroundStyle(.white)
-                    .background(.red)
+                    .background(.green)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 .padding(.horizontal)

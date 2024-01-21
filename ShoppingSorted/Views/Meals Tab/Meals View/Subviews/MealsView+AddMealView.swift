@@ -23,6 +23,7 @@ struct MealsViewAddMealView: View {
                     .font(.title2)
                     .bold()
                 TextField("Name", text: $vm.newMealName, axis: .vertical)
+                    .textInputAutocapitalization(.words)
                     .textFieldStyle(.roundedBorder)
                     .lineLimit(3)
                     .padding()

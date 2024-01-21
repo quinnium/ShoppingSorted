@@ -166,8 +166,8 @@
 		0249543F2AC6FF7200D79046 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				024954402AC6FF8A00D79046 /* ShoppingGroupView.swift */,
 				022D2DC02ACF0179000F440C /* ShoppingListDisclosureGroupView.swift */,
+				024954402AC6FF8A00D79046 /* ShoppingGroupView.swift */,
 				02510C842AD044B7006B2F38 /* ShoppingItemLabelView.swift */,
 			);
 			path = Subviews;

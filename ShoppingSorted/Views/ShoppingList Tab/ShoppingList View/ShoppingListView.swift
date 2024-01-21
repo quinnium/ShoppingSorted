@@ -13,7 +13,7 @@ struct ShoppingListView: View {
     
     var body: some View {
         ZStack {
-            NavigationStack {
+            NavigationStack(path: $vm.navigationPath) {
                 VStack {
                     List {
                         ForEach(vm.aislesList, id:\.self) { aisle in
@@ -22,7 +22,7 @@ struct ShoppingListView: View {
                         Section {
                             HStack {
                                 Spacer()
-                                Button("Show Purchased") {
+                                Button("Show Recently Purchased") {
                                     vm.isShowingPurchasedItems = true
                                 }
                                 Spacer()

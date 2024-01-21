@@ -10,7 +10,7 @@ import SwiftUI
 struct PurchasableItemQuantityView: View {
     
     @Binding var itemQuantity: Double
-    var focusedTextField: FocusState<TextFieldFocus?>.Binding
+    var focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>.Binding
 
     private let quantityFormatter: NumberFormatter = {
         let formatter           = NumberFormatter()
@@ -35,6 +35,6 @@ struct PurchasableItemQuantityView: View {
 
 struct PurchasableItemQuantityView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchasableItemQuantityView(itemQuantity: .constant(20.5), focusedTextField: FocusState<TextFieldFocus?>().projectedValue)
+        PurchasableItemQuantityView(itemQuantity: .constant(20.5), focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>().projectedValue)
     }
 }

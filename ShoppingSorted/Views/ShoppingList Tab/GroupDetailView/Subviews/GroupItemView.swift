@@ -23,27 +23,33 @@ struct GroupItemView: View {
                         vm.itemMarkedAsUnpurchased(item: item)
                     }
                 } label: {
-                    ZStack {
-                        Circle()
-                            .stroke(isSelected ? Color.green : Color.gray, lineWidth: 1)
-                            .foregroundColor(.clear)
-                            .frame(width: 24)
-                        
-                        if isSelected {
-                            Image(systemName: "checkmark.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.green)
-                                .frame(width: 18)
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .stroke(isSelected ? Color.green : Color.gray, lineWidth: 1)
+                                .foregroundColor(.clear)
+                                .frame(width: 22)
+                            
+                            if isSelected {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.green)
+                                    .frame(width: 16)
+                            }
                         }
+                        ShoppingItemLabelView(name: item.name, quantity: item.quantity, unit: item.unit)
                     }
                 }
-                
                 Button {
                     vm.itemSelectedForEditing = item
                 } label: {
-                    ShoppingItemLabelView(name: item.name, quantity: item.quantity, unit: item.unit)
+                    Label("", systemImage: "info.circle")
+                        .foregroundStyle(Color.blue)
+                        .imageScale(.large)
                 }
+                .buttonStyle(.plain)
+                
             }
             if let forMealText = item.forMeal {
                 Text("For '\(forMealText)'")

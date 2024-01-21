@@ -32,33 +32,41 @@ struct ShoppingGroupView: View {
                         Circle()
                             .stroke(isSelected ? Color.green : Color.gray, lineWidth: 1)
                             .foregroundColor(.clear)
-                            .frame(width: 24)
+                            .frame(width: 22)
                         
                         if isSelected {
                             Image(systemName: "checkmark.circle.fill")
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(.green)
-                                .frame(width: 18)
+                                .frame(width: 16)
                         }
                     }
                 }
-                .buttonStyle(.plain)
+                .offset(x: -5, y: 0)
+
+                ShoppingItemLabelView(name: group.commonName, quantity: group.totalQuantity, unit: group.commonUnit)
+                Spacer()
+                    .frame(width: 18.5)
+                
                 if isSingleShoppingItem {
                     Button {
+                        print("tapped1")
                         vm.itemSelectedForEditing = group.shoppingItems.first
                     } label: {
-                        HStack {
-                            ShoppingItemLabelView(name: group.commonName, quantity: group.totalQuantity, unit: group.commonUnit)
-                            Spacer()
-                                .frame(width: 18.5)
-                        }
+                        Label("", systemImage: "info.circle")
                     }
+                    .buttonStyle(.plain)
+                    .frame(width: 20)
                 } else {
-                    NavigationLink(value: group) {
-                        ShoppingItemLabelView(name: group.commonName, quantity: group.totalQuantity, unit: group.commonUnit)
+                    Button {
+                        print("tapped1")
+                        vm.navigationPath.append(group)
+                    } label: {
+                        Label("", systemImage: "chevron.right.circle")
                     }
-                    
+                    .buttonStyle(.plain)
+                    .frame(width: 20)
                 }
             }
             
@@ -71,73 +79,17 @@ struct ShoppingGroupView: View {
                     .padding(.leading, 32)
             }
         }
-        
-        //        VStack(alignment: .leading) {
-        //            HStack {
-        //                Button {
-        //                    isSelected.toggle()
-        //                    if isSelected {
-        //                        vm.itemsMarkedAsPurchased(items: group.shoppingItems)
-        //                    } else {
-        //                        vm.itemsMarkedAsUnpurchased(items: group.shoppingItems)
-        //                    }
-        //                } label: {
-        //                    ZStack {
-        //                        Circle()
-        //                            .stroke(isSelected ? Color.green : Color.gray, lineWidth: 1)
-        //                            .foregroundColor(.clear)
-        //                            .frame(width: 24)
-        //
-        //                        if isSelected {
-        //                            Image(systemName: "checkmark.circle.fill")
-        //                                .resizable()
-        //                                .scaledToFit()
-        //                                .foregroundColor(.green)
-        //                                .frame(width: 18)
-        //                        }
-        //                    }
-        //                }
-        //                .buttonStyle(.plain)
-        //
-        //                Text(group.commonName)
-        //                    .lineLimit(1)
-        //                    .minimumScaleFactor(0.6)
-        //                Spacer()
-        //                HStack {
-        //                    Text(String(format: "%g", group.totalQuantity))
-        //                    Text(group.commonUnit)
-        //                }
-        //                .frame(width: 100)
-        //
-        //                if !isSingleShoppingItem {
-        //                    NavigationLink("", value: group)
-        //                } else {
-        //                    Button("") {
-        //                        vm.itemSelectedForEditing = group.shoppingItems.first
-        //                    }
-        //                }
-        //            }
-        //            if isSingleShoppingItem {
-        //                if let forMealText = group.shoppingItems.first?.forMeal {
-        //                    Text("For: \(forMealText)")
-        //                        .italic()
-        //                        .foregroundStyle(.gray)
-        //                        .font(.caption)
-        //                        .padding(.leading, 32)
-        //                }
-        //            }
-        //        }
     }
 }
 
 #Preview {
     let items = [
-        RMShoppingItem(name: "Olive Oil", quantity: 100.5, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables"),
-        RMShoppingItem(name: "Olive Oil", quantity: 10.6944, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables")
+        RMShoppingItem(name: "Olive Oil", quantity: 100.5, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables")
+        ,RMShoppingItem(name: "Olive Oil", quantity: 10.6944, unit: "ml", aisle: "🍊 🥦 Fruit / Vegetables")
     ]
     let group = ShoppingGroup(items: items)!
     return List {
-        DisclosureGroup("Test", isExpanded: .constant(true)) {
+        DisclosureGroup("Test Aisle", isExpanded: .constant(true)) {
             ShoppingGroupView(group: group, vm: ShoppingListViewModel())
         }
     }

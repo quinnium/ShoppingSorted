@@ -17,7 +17,12 @@ class PurchasedItemsViewModel: ObservableObject {
     }
     
     func fetchItems() {
-        purchasedItems = databaseManager.getShoppingItems(purchased: true)
+        var fetchedItems = databaseManager.getShoppingItems(purchased: true).sorted { $0.purchasedDate ?? Date() > $1.purchasedDate ?? Date() }
+        if let filterToDate = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: Date()) {
+            fetchedItems = fetchedItems.filter { $0.purchasedDate ?? Date() > filterToDate }
+        }
+        purchasedItems = fetchedItems
+        
     }
     
     func unPurchase(item: RMShoppingItem) {

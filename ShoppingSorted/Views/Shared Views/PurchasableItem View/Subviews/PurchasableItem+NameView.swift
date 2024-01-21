@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PurchasableItemNameView: View {
     @Binding var itemName: String
-    var textFieldFocus: FocusState<TextFieldFocus?>.Binding
+    var textFieldFocus: FocusState<PurchasableItemView.TextFieldFocus?>.Binding
     
     var body: some View {
         HStack(spacing: 15) {
@@ -38,6 +38,6 @@ struct PurchasableItemNameView: View {
 
 struct PurchasableItemNameView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchasableItemNameView(itemName: .constant("Test"), textFieldFocus: FocusState<TextFieldFocus?>().projectedValue)
+        PurchasableItemNameView(itemName: .constant("Test"), textFieldFocus: FocusState<PurchasableItemView.TextFieldFocus?>().projectedValue)
     }
 }

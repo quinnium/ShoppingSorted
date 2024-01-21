@@ -10,7 +10,7 @@ import SwiftUI
 struct PurchasableItemUnitView: View {
     let units: [String]
     @Binding var itemUnit: String
-    var focusedTextField: FocusState<TextFieldFocus?>.Binding
+    var focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>.Binding
     
     var body: some View {
         Picker("", selection: $itemUnit) {
@@ -31,7 +31,7 @@ struct PurchasableItemUnitView: View {
 
 struct PurchasableItemUnitView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchasableItemUnitView(units: ["one", "two"], itemUnit: .constant("one"), focusedTextField: FocusState<TextFieldFocus?>().projectedValue)
+        PurchasableItemUnitView(units: ["one", "two"], itemUnit: .constant("one"), focusedTextField: FocusState<PurchasableItemView.TextFieldFocus?>().projectedValue)
     }
 }
 
