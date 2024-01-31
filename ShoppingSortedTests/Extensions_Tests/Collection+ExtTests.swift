@@ -10,13 +10,13 @@ import XCTest
 
 final class Collection_ExtTests: XCTestCase {
 
-    func test_isNotEmpty() throws {
-        let emptyArray: [Any] = []
-        let emptyArrayIsNotEmpty = emptyArray.isNotEmpty
+    func test_isNotEmpty() {
+        let emptyArray: [Any]       = []
+        let emptyArrayIsNotEmpty    = emptyArray.isNotEmpty
         XCTAssertFalse(emptyArrayIsNotEmpty, "isNotEmpty should give a 'false' response for an empty collection")
         
-        let arrayWithValues: [Any] = [1, 2, 3]
-        let arrayWithValuesIsNotEmpty = arrayWithValues.isNotEmpty
+        let arrayWithValues: [Any]      = [1, 2, 3]
+        let arrayWithValuesIsNotEmpty   = arrayWithValues.isNotEmpty
         XCTAssertTrue(arrayWithValuesIsNotEmpty, "isNotEmpty should give a 'true' response for a collection with values")
     }
 }

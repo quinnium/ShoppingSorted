@@ -46,7 +46,6 @@ class RMIngredient: Object, ObjectKeyIdentifiable, PurchasableItem, Codable {
     }
     
     func encode(to encoder: Encoder) throws {
-        // TODO: Check that it's OK not to include 'dateModified' in exports/imports
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(quantity, forKey: .quantity)

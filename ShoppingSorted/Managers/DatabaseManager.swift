@@ -33,11 +33,6 @@ final class DatabaseManager {
         }
     }
 
-    func printRealmFilePath() {
-        let path = realm.configuration.fileURL
-        print("Log: Main Realm database at: \(path?.description ?? "not found")")
-    }
-    
     func getAllMealsUnsorted() -> [RMMeal] {
         let results = realm.objects(RMMeal.self)
         return Array(results)
@@ -89,10 +84,10 @@ final class DatabaseManager {
     func updateIngredientForMeal(ingredient: RMIngredient, name: String, quantity: Double, unit: String, aisle: String) {
         if let ingredient = realm.object(ofType: RMIngredient.self, forPrimaryKey: ingredient.id) {
             realm.beginWrite()
-            ingredient.name = name
+            ingredient.name     = name
             ingredient.quantity = quantity
-            ingredient.unit = unit
-            ingredient.aisle = aisle
+            ingredient.unit     = unit
+            ingredient.aisle    = aisle
             commitChanges()
         }
     }
@@ -157,36 +152,12 @@ final class DatabaseManager {
     }
     
     func getAllPurchasableItemsUnsorted() -> [PurchasableItem] {
-        let ingredients = realm.objects(RMIngredient.self)
-        let shoppingItems = realm.objects(RMShoppingItem.self)
-        var itemsToReturn: [PurchasableItem] = []
+        let ingredients                         = realm.objects(RMIngredient.self)
+        let shoppingItems                       = realm.objects(RMShoppingItem.self)
+        var itemsToReturn: [PurchasableItem]    = []
         itemsToReturn.append(contentsOf: Array(ingredients))
         itemsToReturn.append(contentsOf: Array(shoppingItems))
         return itemsToReturn
-    }
-    
-    func developerCreateBlankMeal(withName name: String = "", withIngredients: Bool) {
-        var ingredients: [RMIngredient] = []
-        if withIngredients {
-            let amount = Int.random(in: 1...7)
-            for _ in 1...amount {
-                let newIngredient = RMIngredient(name: Constants.testMealIngredients.randomElement()!,
-                                               quantity: Double(Int.random(in: 1...5)),
-                                               unit: Constants.DefaultValues.units.randomElement()!,
-                                               aisle: Constants.DefaultValues.aisles.randomElement()!)
-                ingredients.append(newIngredient)
-            }
-        }
-        realm.beginWrite()
-        let newMeal = RMMeal(name: name, ingredients: ingredients)
-        realm.add(newMeal)
-        commitChanges()
-    }
-  
-    func developerDeleteAllObjects() {
-        realm.beginWrite()
-        realm.deleteAll()
-        commitChanges()
     }
     
     func saveAisles(aisles newAisles: [RMAisle]) {

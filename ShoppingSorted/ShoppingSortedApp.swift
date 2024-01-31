@@ -16,6 +16,7 @@ struct ShoppingSortedApp: App {
         WindowGroup {
             AppTabView()
                 .onAppear(perform: {
+                    // Migration service in case of legacy users needing to convert Core Data -> Realm
                     migrationManager.convertCoreDataObjectsInMemory()
                 })
         }

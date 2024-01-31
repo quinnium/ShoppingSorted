@@ -40,6 +40,7 @@ struct PurchasableItemAisleView: View {
                                             Image(systemName: "checkmark")
                                                 .foregroundColor(.blue)
                                                 .padding(.horizontal)
+                                                .id("selectedItemViewID")
                                         }
                                     }
                                 }
@@ -51,15 +52,13 @@ struct PurchasableItemAisleView: View {
                                 .simultaneousGesture(DragGesture().onChanged({ _ in
                                     focusedTextField.wrappedValue = nil
                                 }))
-                                //                            .id(aisle == itemAisle ? vm.selectedItemViewID : nil)
                             }
                         }
-                    
                 }
                 .ssRoundedRectangle(color: .gray, width: 1, cornerRadius: 8)
-//                .onAppear {
-//                    scrollproxy.scrollTo(vm.selectedItemViewID, anchor: .bottom)
-//                }
+                .onAppear {
+                    scrollproxy.scrollTo("selectedItemViewID", anchor: .bottom)
+                }
             }
         }
     }

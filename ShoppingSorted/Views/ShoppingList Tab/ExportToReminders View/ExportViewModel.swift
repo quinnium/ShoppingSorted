@@ -37,7 +37,6 @@ class ExportViewModel: ObservableObject {
     }
     
     func exportToReminders() {
-        // TODO: add a guard to ensure ailse name is on list
         guard remindersManager.accessGranted == true else { return }
         guard selectedReminderList != nil else { return }
         do {

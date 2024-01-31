@@ -12,10 +12,10 @@ import XCTest
 final class PersistenceManagerTests: XCTestCase {
 
     func test_Save_And_Retrieve_From_Defaults() throws {
-        let testKey = "TestKey"
-        let testDate = Date()
+        let testKey         = "TestKey"
+        let testDate        = Date()
         PersistenceManager.save(value: testDate, forKey: testKey)
-        let retrievedValue = PersistenceManager.getValue(forKey: testKey) as? Date
+        let retrievedValue  = PersistenceManager.getValue(forKey: testKey) as? Date
         XCTAssertEqual(retrievedValue, testDate, "Value retrieved from User Defaults does not match the value saved")
     }
 }

@@ -33,5 +33,4 @@ final class MealTests: XCTestCase {
         XCTAssert(meals.count == 1, "Only one meal should be returned from database")
         XCTAssert(meals.first!.name == "UpdatedName", "name did not update correctly")
     }
-
 }

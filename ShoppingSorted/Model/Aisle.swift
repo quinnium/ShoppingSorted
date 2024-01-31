@@ -15,7 +15,7 @@ class RMAisle: Object {
     
     convenience init(name: String, order: Int) {
         self.init()
-        self.name = name
-        self.order = order
+        self.name   = name
+        self.order  = order
     }
 }

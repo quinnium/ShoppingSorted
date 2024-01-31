@@ -47,8 +47,8 @@ class RemindersManager {
             print("access denied")
             throw RemindersError.accessDenied
         }
-        let calendars = store.calendars(for: .reminder)
-        let names = calendars.map { $0.title }
+        let calendars   = store.calendars(for: .reminder)
+        let names       = calendars.map { $0.title }
         return names
     }
     
@@ -76,12 +76,12 @@ class RemindersManager {
     
     func exportItemsToRemindersList(reminderTitles: [String], listName: String) throws {
         guard accessGranted == true else { throw RemindersError.accessDenied }
-        let calendars = store.calendars(for: .reminder)
-        let selectedCal = calendars.first { $0.title == listName }
+        let calendars       = store.calendars(for: .reminder)
+        let selectedCal     = calendars.first { $0.title == listName }
         for title in reminderTitles {
-            let newReminder = EKReminder(eventStore: store)
-            newReminder.calendar = selectedCal
-            newReminder.title = title
+            let newReminder         = EKReminder(eventStore: store)
+            newReminder.calendar    = selectedCal
+            newReminder.title       = title
             try store.save(newReminder, commit: true)
         }
     }

@@ -10,13 +10,13 @@ import Foundation
 class ExportManager {
     
     func exportMealsToJSON(meals: [RMMeal]) -> URL? {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        let data = try? encoder.encode(meals)
-        guard let data = data else { return nil }
-        let jsonString = String(data: data, encoding: .utf8)
-        let documentDirectory = FileManager.default.temporaryDirectory
-        let filenameWithPath = documentDirectory.appendingPathComponent("Exported_Meals", conformingTo: .json)
+        let encoder                 = JSONEncoder()
+        encoder.outputFormatting    = .prettyPrinted
+        let data                    = try? encoder.encode(meals)
+        guard let data              = data else { return nil }
+        let jsonString              = String(data: data, encoding: .utf8)
+        let documentDirectory       = FileManager.default.temporaryDirectory
+        let filenameWithPath        = documentDirectory.appendingPathComponent("Exported_Meals", conformingTo: .json)
         do {
             try jsonString?.write(to: filenameWithPath, atomically: true, encoding: .utf8)
             return filenameWithPath
@@ -25,5 +25,4 @@ class ExportManager {
             return nil
         }
     }
-    
 }

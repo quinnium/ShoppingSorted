@@ -30,11 +30,10 @@ class RMMeal: Object, ObjectKeyIdentifiable, Codable {
     }
     
     func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        let ingredientsAray = Array(self.ingredients)
+        var container       = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(dateCreated, forKey: .dateCreated)
-        let ingredientsAray = Array(self.ingredients)
-//        let ingredientsAray: [Ingredient] = []
         try container.encode(ingredientsAray, forKey: .ingredients)
     }
 

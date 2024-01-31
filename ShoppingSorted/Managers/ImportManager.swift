@@ -19,7 +19,7 @@ class ImportManager {
             DispatchQueue.main.async {
                 let decoder = JSONDecoder()
                 do {
-                    let meals = try decoder.decode([RMMeal].self, from: data)
+                    let meals           = try decoder.decode([RMMeal].self, from: data)
                     let databaseManager = DatabaseManager()
                     databaseManager.addNewMeals(meals: meals)
                     print("QLog: \(meals.count) successfully imported")

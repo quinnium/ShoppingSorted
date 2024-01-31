@@ -8,14 +8,12 @@
 import XCTest
 @testable import ShoppingSorted
 
-
 final class Array_ExtTests: XCTestCase {
 
-
-    func test_moveArrayElements() throws {
-        var testArray = ["A", "B", "C", "D", "E"]
+    func test_moveArrayElements() {
+        var testArray       = ["A", "B", "C", "D", "E"]
         testArray.move(at: 0, to: 4)
-        let expectedArray = ["B", "C", "D", "E", "A"]
+        let expectedArray   = ["B", "C", "D", "E", "A"]
         XCTAssertEqual(testArray, expectedArray, "Moving the array element does not match expected result")
     }
 

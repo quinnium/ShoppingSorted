@@ -9,20 +9,17 @@ import Foundation
 
 class ShoppingListViewModel: ObservableObject {
     
-    private var shoppingItems: [RMShoppingItem]                       = []
     @Published var aislesList: [String]                             = []
     @Published var shoppingGroupsDict: [String: [ShoppingGroup]]    = [:]
     @Published var isShowingPurchasedItems: Bool                    = false
     @Published var isShowingExportView: Bool                        = false
     @Published var isAddingNewShoppingItem: Bool                    = false
+    @Published var navigationPath: [ShoppingGroup]                  = []
     @Published var itemSelectedForEditing: RMShoppingItem?
-    @Published var navigationPath: [ShoppingGroup] = []
-
-    var titlesForExportedReminders: [String] {        
-        shoppingGroupsDict.values.flatMap { $0 }.map { "\($0.commonName), \($0.totalQuantity) \($0.commonUnit)" }
-    }
     
-    private var itemsQueuedForPurchase: [RMShoppingItem]              = [] {
+    private var shoppingItems: [RMShoppingItem]                     = []
+    private let databaseManager                                     = DatabaseManager()
+    private var itemsQueuedForPurchase: [RMShoppingItem]            = [] {
         didSet {
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
@@ -31,8 +28,10 @@ class ShoppingListViewModel: ObservableObject {
         }
     }
     private var timer: Timer?
-    private let databaseManager = DatabaseManager()
-    
+    var titlesForExportedReminders: [String] {
+        shoppingGroupsDict.values.flatMap { $0 }.map { "\($0.commonName), \($0.totalQuantity) \($0.commonUnit)" }
+    }
+
     init() {
         fetchItems()
     }

@@ -52,34 +52,6 @@ struct EditUnitsAndAislesView: View {
                             vm.addNewUnit()
                         }
                     }
-//                    Section("Aisles") {
-//                        ForEach($vm.aisles, id: \.self) { $aisle in
-//                            TextField("Aisle", text: $aisle)
-//                                .lineLimit(1)
-//                                .minimumScaleFactor(0.5)
-//                                .focused($aisleTextFieldInFocus)
-//                        }
-//                        .onDelete(perform: vm.deleteAisle)
-//                        .onMove(perform: vm.moveAisle)
-//                        Button("+ New") {
-//                            vm.addNewAisle()
-//                        }
-//                        .id(vm.bottomOfAislesViewID)
-//                    }
-//                    Section("Units") {
-//                        ForEach($vm.units, id: \.self) { $unit in
-//                            TextField("Unit", text: $unit)
-//                                .lineLimit(1)
-//                                .minimumScaleFactor(0.5)
-//                                .focused($unitTextFieldInFocus)
-//                        }
-//                        .onDelete(perform: vm.deleteUnit)
-//                        .onMove(perform: vm.moveUhits)
-//                        Button("+ New") {
-//                            vm.addNewUnit()
-//                        }
-//                        .id(vm.bottomOfUnitsViewID)
-//                    }
                 }
                 .onChange(of: vm.aisles.count) { proxy.scrollTo(vm.bottomOfAislesViewID, anchor: .bottom) }
                 .onChange(of: vm.units.count) { proxy.scrollTo(vm.bottomOfUnitsViewID, anchor: .bottom) }

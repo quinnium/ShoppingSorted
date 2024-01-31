@@ -25,7 +25,6 @@
 		9C0877442A9B9C2800B8B32E /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0877432A9B9C2800B8B32E /* AppTabView.swift */; };
 		9C0877462A9B9C2800B8B32E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C0877452A9B9C2800B8B32E /* Assets.xcassets */; };
 		9C0877492A9B9C2800B8B32E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C0877482A9B9C2800B8B32E /* Preview Assets.xcassets */; };
-		9C0877532A9B9C2900B8B32E /* ShoppingSortedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0877522A9B9C2900B8B32E /* ShoppingSortedTests.swift */; };
 		9C096AB12B66BEC9000FCE72 /* ConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C096AB02B66BEC8000FCE72 /* ConstantsTests.swift */; };
 		9C096AB52B66C923000FCE72 /* Collection+ExtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C096AB42B66C923000FCE72 /* Collection+ExtTests.swift */; };
 		9C096AB72B66CCF9000FCE72 /* Array+ExtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C096AB62B66CCF9000FCE72 /* Array+ExtTests.swift */; };
@@ -75,7 +74,6 @@
 		9C91E3792B697E62003FA95B /* ShoppingItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91E3782B697E62003FA95B /* ShoppingItemTests.swift */; };
 		9C91E37B2B69880A003FA95B /* MealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91E37A2B69880A003FA95B /* MealTests.swift */; };
 		9C91E37D2B698ED2003FA95B /* ShoppingGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91E37C2B698ED2003FA95B /* ShoppingGroupTests.swift */; };
-		9CC867A32AA1082C001BFF23 /* DeveloperToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC867A22AA1082B001BFF23 /* DeveloperToolsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +108,6 @@
 		9C0877452A9B9C2800B8B32E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C0877482A9B9C2800B8B32E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9C08774E2A9B9C2900B8B32E /* ShoppingSortedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingSortedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C0877522A9B9C2900B8B32E /* ShoppingSortedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingSortedTests.swift; sourceTree = "<group>"; };
 		9C096AB02B66BEC8000FCE72 /* ConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTests.swift; sourceTree = "<group>"; };
 		9C096AB42B66C923000FCE72 /* Collection+ExtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+ExtTests.swift"; sourceTree = "<group>"; };
 		9C096AB62B66CCF9000FCE72 /* Array+ExtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ExtTests.swift"; sourceTree = "<group>"; };
@@ -158,7 +155,6 @@
 		9C91E3782B697E62003FA95B /* ShoppingItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemTests.swift; sourceTree = "<group>"; };
 		9C91E37A2B69880A003FA95B /* MealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTests.swift; sourceTree = "<group>"; };
 		9C91E37C2B698ED2003FA95B /* ShoppingGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingGroupTests.swift; sourceTree = "<group>"; };
-		9CC867A22AA1082B001BFF23 /* DeveloperToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperToolsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,7 +285,6 @@
 		9C0877512A9B9C2900B8B32E /* ShoppingSortedTests */ = {
 			isa = PBXGroup;
 			children = (
-				9C0877522A9B9C2900B8B32E /* ShoppingSortedTests.swift */,
 				9C096AB22B66C8BF000FCE72 /* Utilities_Tests */,
 				9C096AB32B66C8CF000FCE72 /* Extensions_Tests */,
 				9C096ABA2B66D814000FCE72 /* Managers_Tests */,
@@ -469,7 +464,6 @@
 			isa = PBXGroup;
 			children = (
 				9C0877432A9B9C2800B8B32E /* AppTabView.swift */,
-				9CC867A12AA10817001BFF23 /* DeveloperTools View */,
 				9C7049C72A9BA75300C14053 /* Meals Tab */,
 				02CD3EF42AC59C06003F55D6 /* ShoppingList Tab */,
 				0276C1C02AA237D00026FA56 /* Shared Views */,
@@ -503,14 +497,6 @@
 				9C91E37C2B698ED2003FA95B /* ShoppingGroupTests.swift */,
 			);
 			path = Model_Tests;
-			sourceTree = "<group>";
-		};
-		9CC867A12AA10817001BFF23 /* DeveloperTools View */ = {
-			isa = PBXGroup;
-			children = (
-				9CC867A22AA1082B001BFF23 /* DeveloperToolsView.swift */,
-			);
-			path = "DeveloperTools View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,7 +661,6 @@
 				02CD3EFD2AC5CACA003F55D6 /* Array+Ext.swift in Sources */,
 				9C3498412ACB584C00B11F6B /* GroupItemView.swift in Sources */,
 				9C41E8CA2AA3CE1200FC2514 /* EditUnitsAndAislesView.swift in Sources */,
-				9CC867A32AA1082C001BFF23 /* DeveloperToolsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,7 +672,6 @@
 				9C91E37D2B698ED2003FA95B /* ShoppingGroupTests.swift in Sources */,
 				9C096AB72B66CCF9000FCE72 /* Array+ExtTests.swift in Sources */,
 				9C096AC02B68448C000FCE72 /* ExportImportTests.swift in Sources */,
-				9C0877532A9B9C2900B8B32E /* ShoppingSortedTests.swift in Sources */,
 				9C91E37B2B69880A003FA95B /* MealTests.swift in Sources */,
 				9C91E3792B697E62003FA95B /* ShoppingItemTests.swift in Sources */,
 				9C096ABC2B66D841000FCE72 /* PersistenceManagerTests.swift in Sources */,
@@ -846,7 +830,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quinnium.SmartShopping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -883,7 +867,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quinnium.SmartShopping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

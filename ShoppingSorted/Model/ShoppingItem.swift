@@ -37,8 +37,8 @@ class RMShoppingItem: Object, ObjectKeyIdentifiable, PurchasableItem {
     func purchaseItem() {
         if let realm = self.realm {
             realm.beginWrite()
-            self.purchased = true
-            self.purchasedDate = Date()
+            self.purchased      = true
+            self.purchasedDate  = Date()
             try? realm.commitWrite()
         } else {
             self.purchased = true
@@ -50,8 +50,8 @@ class RMShoppingItem: Object, ObjectKeyIdentifiable, PurchasableItem {
     func unPurchaseItem() {
         if let realm = self.realm {
             realm.beginWrite()
-            self.purchased = false
-            self.purchasedDate = .none
+            self.purchased      = false
+            self.purchasedDate  = .none
             try? realm.commitWrite()
         } else {
             self.purchased = false

@@ -118,14 +118,14 @@ class PurchasableItemViewModel: ObservableObject {
         }
         if itemType == .existingIngredient || itemType == .existingShoppingItem {
             if !unitList.contains(itemUnit) {
-                oldInvalidUnitName = itemUnit
-                itemUnit = unitList.first ?? ""
-                isShowingAlertInvalidUnit = true
+                oldInvalidUnitName          = itemUnit
+                itemUnit                    = unitList.first ?? ""
+                isShowingAlertInvalidUnit   = true
             }
             itemAisle       = item.aisle
             if !aisleList.contains(itemAisle) {
-                oldInvalidAisleName = itemAisle
-                isShowingAlertInvalidAisle = true
+                oldInvalidAisleName         = itemAisle
+                isShowingAlertInvalidAisle  = true
             }
         }
     }

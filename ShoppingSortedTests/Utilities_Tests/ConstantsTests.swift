@@ -11,27 +11,27 @@ import RealmSwift
 
 final class ConstantsTests: XCTestCase {
         
-    func test_At_Least_One_DefaultAisle() throws {
-        let minimumNumber = 1
-        let defaultAislesCount = Constants.DefaultValues.aisles.count
+    func test_At_Least_One_DefaultAisle() {
+        let minimumNumber       = 1
+        let defaultAislesCount  = Constants.DefaultValues.aisles.count
         XCTAssertGreaterThanOrEqual(defaultAislesCount, minimumNumber, "There needs to be at least one default aisle stored")
     }
 
-    func test_At_Least_One_DefaultUnit() throws {
-        let minimumNumber = 1
-        let defaultUnitsCount = Constants.DefaultValues.units.count
+    func test_At_Least_One_DefaultUnit() {
+        let minimumNumber       = 1
+        let defaultUnitsCount   = Constants.DefaultValues.units.count
         XCTAssertGreaterThanOrEqual(defaultUnitsCount, minimumNumber, "There needs to be at least one default unit stored")
     }
     
-    func test_All_Aisles_Are_Unique() throws {
-        let defaultAisles = Constants.DefaultValues.aisles
-        let allAislesAreUnique = areElementsUnique(defaultAisles)
+    func test_All_Aisles_Are_Unique() {
+        let defaultAisles       = Constants.DefaultValues.aisles
+        let allAislesAreUnique  = areElementsUnique(defaultAisles)
         XCTAssertTrue(allAislesAreUnique, "All default aisles must be unique otherwise unexpected behaviour could occur")
     }
     
-    func test_All_Units_Are_Unique() throws {
-        let defaultUnits = Constants.DefaultValues.units
-        let allUnitsAreUnique = areElementsUnique(defaultUnits)
+    func test_All_Units_Are_Unique() {
+        let defaultUnits        = Constants.DefaultValues.units
+        let allUnitsAreUnique   = areElementsUnique(defaultUnits)
         XCTAssertTrue(allUnitsAreUnique, "All default units must be unique otherwise unexpected behaviour could occur")
     }
     
